@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+class AccountPage extends StatelessWidget {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class WelcomePage extends StatelessWidget {
         children: [
           Center(
             child: Text(
-              'Welcome to\nFlutter',
+              'Welcome to\nAccount',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40,
