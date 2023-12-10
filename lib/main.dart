@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:beaten_beat/screens/welcome_page/welcome_page.dart';
+import 'package:beaten_beat/routes/routes.dart';
+import 'package:beaten_beat/routes/router_generator.dart';
+import 'package:beaten_beat/view.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,19 +14,17 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Beaten-beat',
       theme: ThemeData(
         fontFamily: 'Hahmlet',
       ),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const WelcomePage(),
-        /*
-        '/login': (context) => const LoginPage(),
-        '/account': (context) => const AccountPage(),
-        '/channel': (context) => const ChannelPage(),
-        */
-      },
+      builder: (_, child) => AppView(
+        child: child!,
+      ),
+      initialRoute: routeHome,
+      navigatorKey: navKey,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
