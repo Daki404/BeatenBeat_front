@@ -10,4 +10,10 @@ class ColorPalette {
   static const Color gray400 = Color(0xFF646F7C);
   static const Color gray500 = Color(0xFF374553);
   static const Color gray600 = Color(0xFF28323C);
+
+  static const Color blackRussian = Color(0xFF0A001C);
+  static const Color paua = Color(0xFF190061);
+  static const Color kingfisherDaisy = Color(0xFF240090);
+  static const Color darkBlue = Color(0xFF3500D3);
+  static const Color mineShaft = Color(0xFF282828);
 }
