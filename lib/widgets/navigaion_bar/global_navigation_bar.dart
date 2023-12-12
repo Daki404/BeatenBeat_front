@@ -1,3 +1,4 @@
+import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:beaten_beat/routes/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,13 @@ class _GlobalNavigationBarState extends State<GlobalNavigationBar> {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
+      decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(
+          color: ColorPalette.gray300,
+          width: 2.0,
+        )),
+      ),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.max,
