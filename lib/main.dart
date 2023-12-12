@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Beaten-beat',
       theme: ThemeData(
-        fontFamily: 'Hahmlet',
+        fontFamily: 'Helvetica',
       ),
       builder: (_, child) => AppView(
         child: child!,

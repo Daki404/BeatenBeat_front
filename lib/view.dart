@@ -11,7 +11,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.navy,
+      backgroundColor: ColorPalette.blackRussian,
       body: Column(
         children: [
           const GlobalNavigationBar(),

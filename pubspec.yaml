@@ -18,3 +18,11 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/logos/
+  
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/Helvetica_Black_Oblique.otf
