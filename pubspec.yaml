@@ -10,6 +10,8 @@ dependencies:
   auto_size_text: ^3.0.0
   flutter:
     sdk: flutter
+  google_fonts: ^6.1.0
+  pointer_interceptor: ^0.10.0
   responsive_builder: ^0.7.0
   universal_html: ^2.2.4
   youtube_player_iframe: ^4.0.4
