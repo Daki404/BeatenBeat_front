@@ -9,14 +9,13 @@ class HeroBanner extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height - 100;
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 100),
+    return SizedBox(
       width: screenWidth,
       height: screenHeight,
       child: Positioned.fill(
         child: Image.asset(
-          'assets/logos/img_logo.png',
-          repeat: ImageRepeat.repeatY,
+          'assets/images/album_all.png',
+          repeat: ImageRepeat.repeat,
         ),
       ),
     );
