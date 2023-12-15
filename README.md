@@ -1,6 +1,7 @@
 # Beaten_beat (비튼-비트)
 <p align="center">
-<img src="https://github.com/Daki404/Beaten_beat/assets/67456502/d22d52bd-ffd0-4bb4-b49b-b356bedcf337" width="500"/>
+
+<img src="https://github.com/Daki404/Beaten_beat/assets/67456502/cfe8d259-a8aa-4276-8577-c333446a11c4" width="500"/>
 </p>
 
 <p align="center">
