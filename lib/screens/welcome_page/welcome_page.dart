@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:beaten_beat/screens/welcome_page/hero_banner/hero_banner.dart';
-import 'package:beaten_beat/screens/welcome_page/intro_text/intro_text.dart';
+import 'package:beaten_beat/screens/welcome_page/intro_view/intro_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
@@ -45,11 +45,11 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: HeroBanner(),
               );
             },
-            //offsetBuilder: (scrollOffset) => Offset(0, scrollOffset),
+            offsetBuilder: (scrollOffset) => Offset(0, scrollOffset),
           ),
           ScrollTransformItem(
             builder: (context) {
-              return IntroText();
+              return IntroView();
             },
             offsetBuilder: (context) => Offset(0, 0),
           ),
