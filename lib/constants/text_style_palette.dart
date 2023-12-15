@@ -1,6 +1,6 @@
 import 'package:beaten_beat/constants/color_palette.dart';
-import 'package:beaten_beat/screens/welcome_page/intro_text/intro_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextStyles {
   TextStyles._();
@@ -10,7 +10,10 @@ class TextStyles {
     color: ColorPalette.sky,
   );
   static const TextStyle introText = TextStyle(
-    color: ColorPalette.sky,
     fontSize: 50,
+    color: ColorPalette.sky,
   );
+  static TextStyle get introTextKr => GoogleFonts.notoSans(
+        textStyle: introText,
+      );
 }
