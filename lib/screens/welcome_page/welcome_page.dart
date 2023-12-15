@@ -1,4 +1,6 @@
-import 'package:beaten_beat/widgets/hero_banner/hero_banner.dart';
+import 'dart:math';
+
+import 'package:beaten_beat/screens/welcome_page/hero_banner/hero_banner.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
@@ -32,10 +34,15 @@ class _WelcomePageState extends State<WelcomePage> {
       backgroundColor: ColorPalette.blackRussian,
       body: ScrollTransformView(
         children: [
-          //Image(image: AssetImage('assets/logos/logo_text.png')),
           ScrollTransformItem(
             builder: (scrollOffset) {
-              return HeroBanner();
+              return Opacity(
+                opacity: max(
+                  (2000 - scrollOffset) / 2000,
+                  0.3,
+                ),
+                child: HeroBanner(),
+              );
             },
             //offsetBuilder: (scrollOffset) => Offset(0, scrollOffset),
           ),
