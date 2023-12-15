@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:beaten_beat/screens/welcome_page/hero_banner/hero_banner.dart';
+import 'package:beaten_beat/screens/welcome_page/intro_text/intro_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
@@ -38,7 +39,7 @@ class _WelcomePageState extends State<WelcomePage> {
             builder: (scrollOffset) {
               return Opacity(
                 opacity: max(
-                  (2000 - scrollOffset) / 2000,
+                  (1000 - scrollOffset) / 1000,
                   0.3,
                 ),
                 child: HeroBanner(),
@@ -48,28 +49,13 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           ScrollTransformItem(
             builder: (context) {
-              return Container(
-                alignment: Alignment.topCenter,
-                width: screenWidth,
-                height: screenHeight,
-                child: Center(
-                  child: Text(
-                    'Welcome to\nBeaten-beat!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: ColorPalette.sky,
-                    ),
-                  ),
-                ),
-              );
+              return IntroText();
             },
             offsetBuilder: (context) => Offset(0, 0),
           ),
           ScrollTransformItem(builder: (context) {
             return Container(
-              //color: ColorPalette.paua,
+              color: ColorPalette.paua,
               height: 1000,
             );
           }),
