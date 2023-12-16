@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:beaten_beat/screens/welcome_page/explain_view/explain_one.dart';
 import 'package:beaten_beat/screens/welcome_page/hero_banner/hero_banner.dart';
 import 'package:beaten_beat/screens/welcome_page/intro_view/intro_view.dart';
 import 'package:flutter/material.dart';
@@ -48,29 +49,60 @@ class _WelcomePageState extends State<WelcomePage> {
             offsetBuilder: (scrollOffset) => Offset(0, scrollOffset),
           ),
           ScrollTransformItem(
-            builder: (context) {
+            builder: (scrollOffset) {
               return IntroView();
             },
-            offsetBuilder: (context) => Offset(0, 0),
+            offsetBuilder: (scrollOffset) => Offset(0, 0),
           ),
-          ScrollTransformItem(builder: (context) {
-            return Container(
-              color: ColorPalette.paua,
-              height: 1000,
-            );
-          }),
-          ScrollTransformItem(builder: (context) {
-            return Container(
-              color: ColorPalette.kingfisherDaisy,
-              height: 1500,
-            );
-          }),
-          ScrollTransformItem(builder: (context) {
-            return Container(
-              color: ColorPalette.darkBlue,
-              height: 500,
-            );
-          }),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              return Carousel();
+            },
+            offsetBuilder: (scrollOffset) {
+              double st_coord = -4 * screenWidth;
+              bool is_move = scrollOffset >= 2 * screenHeight;
+              double distance = scrollOffset - 2 * screenHeight;
+              double x_coord =
+                  st_coord + (distance * (screenWidth / screenHeight));
+
+              /*
+              print(distance);
+              if (x_coord >= 0) {
+                double diff = x_coord;
+                x_coord = 0;
+                distance -= diff * screenHeight / screenWidth;
+                print("end!");
+                print(distance);
+              }
+              */
+              print(scrollOffset);
+              print(x_coord);
+              return Offset(
+                x_coord,
+                is_move ? distance : 0,
+              );
+            },
+          ),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              return Container(
+                color: ColorPalette.paua,
+                height: screenHeight,
+              );
+            },
+            offsetBuilder: (scrollOffset) =>
+                Offset(0, scrollOffset - 2 * screenHeight),
+          ),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              return Container(
+                color: ColorPalette.sky,
+                height: screenHeight,
+              );
+            },
+            offsetBuilder: (scrollOffset) =>
+                Offset(0, scrollOffset - 2 * screenHeight),
+          ),
         ],
       ),
     );
