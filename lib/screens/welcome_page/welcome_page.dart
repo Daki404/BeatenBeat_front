@@ -56,52 +56,48 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           ScrollTransformItem(
             builder: (scrollOffset) {
-              return Carousel();
-            },
-            offsetBuilder: (scrollOffset) {
-              double st_coord = -4 * screenWidth;
-              bool is_move = scrollOffset >= 2 * screenHeight;
-              double distance = scrollOffset - 2 * screenHeight;
-              double x_coord =
-                  st_coord + (distance * (screenWidth / screenHeight));
-
-              /*
-              print(distance);
-              if (x_coord >= 0) {
-                double diff = x_coord;
-                x_coord = 0;
-                distance -= diff * screenHeight / screenWidth;
-                print("end!");
-                print(distance);
-              }
-              */
-              print(scrollOffset);
-              print(x_coord);
-              return Offset(
-                x_coord,
-                is_move ? distance : 0,
-              );
-            },
-          ),
-          ScrollTransformItem(
-            builder: (scrollOffset) {
               return Container(
                 color: ColorPalette.paua,
                 height: screenHeight,
               );
             },
-            offsetBuilder: (scrollOffset) =>
-                Offset(0, scrollOffset - 2 * screenHeight),
+            offsetBuilder: (scrollOffset) => Offset(
+                2 * screenWidth - scrollOffset * screenWidth / screenHeight,
+                max(0, scrollOffset - 2 * screenHeight)),
           ),
           ScrollTransformItem(
             builder: (scrollOffset) {
               return Container(
-                color: ColorPalette.sky,
+                color: ColorPalette.kingfisherDaisy,
                 height: screenHeight,
               );
             },
-            offsetBuilder: (scrollOffset) =>
-                Offset(0, scrollOffset - 2 * screenHeight),
+            offsetBuilder: (scrollOffset) => Offset(
+                3 * screenWidth - scrollOffset * screenWidth / screenHeight,
+                max(-screenHeight, scrollOffset - 3 * screenHeight)),
+          ),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              return Container(
+                color: ColorPalette.darkBlue,
+                height: screenHeight,
+              );
+            },
+            offsetBuilder: (scrollOffset) => Offset(
+                max(
+                    0,
+                    4 * screenWidth -
+                        scrollOffset * screenWidth / screenHeight),
+                max(-screenHeight, scrollOffset - 4 * screenHeight)),
+          ),
+          ScrollTransformItem(
+            builder: (scrollOffset) {
+              return Container(
+                color: ColorPalette.mineShaft,
+                height: screenHeight,
+              );
+            },
+            offsetBuilder: (scrollOffset) => Offset(0, 0),
           ),
         ],
       ),
