@@ -6,6 +6,7 @@ import 'package:beaten_beat/screens/welcome_page/intro_view/intro_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
+import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
       script:
           'YouTube 컨텐츠 플레이어를 실행하여 플레이리스트를 재생할 수 있습니다. 플레이어를 켜고 스피커에 연결하여 공간에 음악을 재생해 보세요.',
       videoUrl:
-          'https://bgms-bucket.s3.ap-northeast-2.amazonaws.com/video/step1.mp4',
+          'https://bgms-bucket.s3.ap-northeast-2.amazonaws.com/video/step2_4.mp4',
     );
     lpThree = LpExplain(
       key: lpThreeKey,
@@ -55,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
       script:
           '리모컨이 설치 되어있는 모든 Device에서 컨텐츠 재생, 컨텐츠 넘기기, 볼륨 조절 등 YouTube 컨텐츠 플레이어를 제어해 보세요!',
       videoUrl:
-          'https://bgms-bucket.s3.ap-northeast-2.amazonaws.com/video/step1.mp4',
+          'https://bgms-bucket.s3.ap-northeast-2.amazonaws.com/video/step3.mp4',
     );
   }
 
@@ -82,12 +83,12 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           ScrollTransformItem(
             builder: (scrollOffset) {
-              return IntroView();
+              return AbsorbPointer(absorbing: true, child: IntroView());
             },
             offsetBuilder: (scrollOffset) => Offset(0, 0),
           ),
           ScrollTransformItem(builder: (scrollOffset) {
-            return lpOne;
+            return AbsorbPointer(absorbing: true, child: lpOne);
           }, offsetBuilder: (scrollOffset) {
             lpOneKey.currentState?.increaseDegree(1);
             return Offset(
@@ -95,7 +96,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 max(0, scrollOffset - 2 * screenHeight));
           }),
           ScrollTransformItem(builder: (scrollOffset) {
-            return lpTwo;
+            return AbsorbPointer(absorbing: true, child: lpTwo);
           }, offsetBuilder: (scrollOffset) {
             lpTwoKey.currentState?.increaseDegree(-1);
             return Offset(
@@ -103,7 +104,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 max(-screenHeight, scrollOffset - 3 * screenHeight));
           }),
           ScrollTransformItem(builder: (scrollOffset) {
-            return lpThree;
+            return AbsorbPointer(absorbing: true, child: lpThree);
           }, offsetBuilder: (scrollOffset) {
             lpThreeKey.currentState?.increaseDegree(1);
             return Offset(
