@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:beaten_beat/constants/text_style_palette.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +72,7 @@ class _IntroViewState extends State<IntroView> {
           ),
           const SizedBox(height: 30),
           SizedBox(
-            width: 1100,
+            width: min(1100, screenWidth),
             child: Stack(children: [
               YoutubePlayer(
                 controller: _controller,

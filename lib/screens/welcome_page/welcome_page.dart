@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:beaten_beat/screens/welcome_page/explain_view/lp_explain.dart';
+import 'package:beaten_beat/screens/welcome_page/footer/footer.dart';
 import 'package:beaten_beat/screens/welcome_page/hero_banner/hero_banner.dart';
 import 'package:beaten_beat/screens/welcome_page/intro_view/intro_view.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
             builder: (scrollOffset) {
               return Opacity(
                 opacity: max(
-                  (1000 - scrollOffset) / 1000,
+                  (1000 - scrollOffset.abs()) / 1000,
                   0.3,
                 ),
                 child: HeroBanner(),
@@ -107,18 +108,19 @@ class _WelcomePageState extends State<WelcomePage> {
             return AbsorbPointer(absorbing: true, child: lpThree);
           }, offsetBuilder: (scrollOffset) {
             lpThreeKey.currentState?.increaseDegree(1);
+
             return Offset(
                 max(
                     0,
                     4 * screenWidth -
                         scrollOffset * screenWidth / screenHeight),
-                max(-screenHeight, scrollOffset - 4 * screenHeight));
+                max(-screenHeight, min(scrollOffset - 4 * screenHeight, 0)));
           }),
           ScrollTransformItem(
             builder: (scrollOffset) {
-              return Container(
-                color: ColorPalette.mineShaft,
-                height: screenHeight,
+              return AbsorbPointer(
+                absorbing: false,
+                child: Footer(),
               );
             },
             offsetBuilder: (scrollOffset) => Offset(0, 0),

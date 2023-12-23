@@ -28,7 +28,7 @@ class LpExplainState extends State<LpExplain> {
 
   void increaseDegree(int weight) {
     setState(() {
-      degrees = (degrees + 20 * weight) % 360;
+      degrees = (degrees + 10 * weight) % 360;
     });
   }
 
