@@ -16,4 +16,8 @@ class ColorPalette {
   static const Color kingfisherDaisy = Color(0xFF240090);
   static const Color darkBlue = Color(0xFF3500D3);
   static const Color mineShaft = Color(0xFF282828);
+
+  static const Color naverGreen = Color(0xFF03C75A);
+  static const Color kakaoYellow = Color(0xFFFEE500);
+  static const Color googleBlue = Color(0xFF4285F4);
 }
