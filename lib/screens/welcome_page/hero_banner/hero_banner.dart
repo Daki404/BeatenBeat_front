@@ -24,11 +24,9 @@ class HeroBanner extends StatelessWidget {
           child: SizedBox(
             width: screenWidth,
             height: screenHeight,
-            child: Positioned.fill(
-              child: Image.asset(
-                'assets/images/album_all.png',
-                repeat: ImageRepeat.repeat,
-              ),
+            child: Image.asset(
+              'assets/images/album_all.png',
+              repeat: ImageRepeat.repeat,
             ),
           ),
         ),
