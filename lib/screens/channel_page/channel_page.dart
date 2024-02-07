@@ -12,16 +12,15 @@ class ChannelPage extends StatelessWidget {
       body: Column(
         children: [
           Center(
-            child: Text(
-              'Welcome to\nChannel',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: ColorPalette.sky,
-              ),
+              child: Text(
+            'Channel',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: ColorPalette.sky,
             ),
-          ),
+          ))
         ],
       ),
     );
