@@ -1,3 +1,6 @@
+import 'dart:html' as html;
+import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:beaten_beat/constants/urls.dart';
 import 'package:beaten_beat/constants/color_palette.dart';
@@ -7,11 +10,19 @@ import 'package:auto_size_text/auto_size_text.dart';
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);
 
-  void _launchURL(String url) async {
-    if (!await canLaunch(url)) {
-      throw 'Could not launch $url';
-    } else {
-      await launch(url);
+  Future<void> loginRedirect(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      final redirectUrl = response.body;
+
+      if (await canLaunch(redirectUrl)) {
+        await launch(redirectUrl);
+      } else {
+        throw 'Could not launch $redirectUrl';
+      }
+    } catch (e) {
+      // Handle error
+      print('Failed to call API: $e');
     }
   }
 
@@ -65,7 +76,7 @@ class AccountPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        _launchURL(Url.kakaoOAuthUrl);
+                        html.window.open(Url.kakaoOAuthUrl, '_self');
                       },
                       icon: Image.asset(
                         'assets/logos/kakao.png',
@@ -93,7 +104,7 @@ class AccountPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        _launchURL(Url.naverOAuthUrl);
+                        html.window.open(Url.naverOAuthUrl, '_self');
                       },
                       icon: Image.asset(
                         'assets/logos/naver.png',
@@ -121,7 +132,7 @@ class AccountPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        _launchURL(Url.googleOAuthUrl);
+                        loginRedirect(Url.googleOAuthUrl);
                       },
                       icon: Image.asset(
                         'assets/logos/google.png',
