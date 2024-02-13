@@ -1,7 +1,9 @@
 import 'package:beaten_beat/constants/color_palette.dart';
+import 'package:beaten_beat/provider/auth_provider.dart';
 import 'package:beaten_beat/routes/routes.dart';
+import 'package:beaten_beat/screens/profile_page/profile_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'package:beaten_beat/widgets/navigaion_bar/navigation_item.dart';
 
 class GlobalNavigationBar extends StatefulWidget {
@@ -13,6 +15,23 @@ class GlobalNavigationBar extends StatefulWidget {
 
 class _GlobalNavigationBarState extends State<GlobalNavigationBar> {
   int index = 0;
+
+  NavigationItem toggleItem() {
+    String title = 'Account';
+    String routePath = routeAccount;
+
+    if (Provider.of<AuthProvider>(context).isLoggedIn) {
+      title = 'Profile';
+      routePath = routeProfile;
+    }
+
+    return NavigationItem(
+      selected: index == 1,
+      title: title,
+      routeName: routePath,
+      onHighlight: onHighlight,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +54,7 @@ class _GlobalNavigationBarState extends State<GlobalNavigationBar> {
               routeName: routeHome,
               onHighlight: onHighlight,
             ),
-            NavigationItem(
-              selected: index == 1,
-              title: 'Account',
-              routeName: routeAccount,
-              onHighlight: onHighlight,
-            ),
+            toggleItem(),
             NavigationItem(
               selected: index == 2,
               title: 'Channel',
