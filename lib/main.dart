@@ -1,11 +1,17 @@
+import 'package:beaten_beat/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
 
 import 'package:beaten_beat/routes/routes.dart';
 import 'package:beaten_beat/routes/router_generator.dart';
 import 'package:beaten_beat/view.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+        create: (_) => AuthProvider(), child: const MainApp()),
+  );
 }
 
 class MainApp extends StatelessWidget {
