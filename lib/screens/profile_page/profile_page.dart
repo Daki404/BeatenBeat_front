@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:beaten_beat/apis/ueser_api.dart';
 import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -12,11 +13,8 @@ class ProfilePage extends StatelessWidget {
       final Dio dio = Dio();
       dio.options.extra['withCredentials'] = true;
 
-      // 주어진 URL
-      var url = Uri.parse('http://localhost:8080/api/v1/user/me');
-
       // GET 요청 보내기
-      var response = await dio.get(url.toString());
+      var response = await dio.get(UserApi.myinfo);
 
       // 응답 처리
       if (response.statusCode == 200) {
