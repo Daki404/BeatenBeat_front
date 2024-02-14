@@ -1,4 +1,5 @@
-import 'package:beaten_beat/screens/account_page/account_page.dart';
+import 'package:beaten_beat/screens/profile_page/account_page.dart';
+import 'package:beaten_beat/screens/profile_page/profile_page.dart';
 import 'package:beaten_beat/screens/channel_page/channel_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,12 @@ class RouteGenerator {
       case routeChannel:
         return PageRouteBuilder(
           pageBuilder: (_, __, ___) => ChannelPage(),
+          transitionDuration: Duration(seconds: 0),
+        );
+
+      case routeProfile:
+        return PageRouteBuilder(
+          pageBuilder: (_, __, ___) => ProfilePage(),
           transitionDuration: Duration(seconds: 0),
         );
 
