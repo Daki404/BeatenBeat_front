@@ -1,12 +1,38 @@
+import 'dart:typed_data';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:beaten_beat/apis/ueser_api.dart';
 import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:image_network/image_network.dart';
+import 'dart:html' as html;
+import 'dart:convert';
+import 'package:image_picker_web/image_picker_web.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  late Future<Map<String, dynamic>?> _userInfoFuture;
+  late String _imageUrl;
+  late String _nickName;
+  late String _socialType;
+
+  @override
+  void initState() {
+    super.initState();
+    _userInfoFuture = getUserInfo(context);
+  }
+
+  Future<Uint8List?> pickUpImage(BuildContext context) async {
+    Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+    return bytesFromPicker;
+  }
 
   Future<Map<String, String>?> getUserInfo(BuildContext context) async {
     try {
@@ -26,6 +52,37 @@ class ProfilePage extends StatelessWidget {
       print('Error occurred: $e');
     }
     return null;
+  }
+
+  Future<void> uploadImageToServer(
+      BuildContext context, Uint8List imageByte) async {
+    final Dio dio = Dio();
+    dio.options.extra['withCredentials'] = true;
+
+    String base64Image = base64Encode(imageByte);
+
+    FormData formData = FormData.fromMap({
+      "file": await MultipartFile.fromBytes(imageByte, filename: 'image.jpg')
+    });
+
+    try {
+      Response response = await dio.post(
+        UserApi.myinfo,
+        data: formData,
+      );
+      if (response.statusCode == 200) {
+        print("Image uploaded successfully");
+        setState(
+          () {
+            _imageUrl = 'data:image/jpeg;base64,${base64Image}';
+          },
+        );
+      } else {
+        print("Failed to upload image");
+      }
+    } catch (e) {
+      print('Error uploading image: $e');
+    }
   }
 
   @override
@@ -48,8 +105,8 @@ class ProfilePage extends StatelessWidget {
               return Center(child: Text('Error occurred'));
             } else if (snapshot.hasData) {
               final userInfo = snapshot.data!;
-              final String imageUrl = userInfo['image_url'] ??
-                  'https://mblogthumb-phinf.pstatic.net/MjAyMTAzMTJfMjI4/MDAxNjE1NTI1OTg5NTQ3.jEVPufXOBndKsRPMn59BrM-wmv_h_602_fvvMvh5xvwg.im0lDZ3ZnFKeQMBn-UIqGFyh7p6I5xlBCmc4uVgsvJcg.JPEG.sj330035/%EC%B9%B4%ED%86%A1%ED%94%84%EC%82%AC_(3).jpeg?type=w800';
+              final String imageUrl = userInfo['imageURL'] ??
+                  'https://mblogthumb-phinf.pstatic.net/MjAyMTAzMDhfMjg1/MDAxNjE1MTg3MDkyODA5.NaArqzn6u4fcTOVbyrru5OjIU-09zNFh0Whj4fqyosQg.7jaO1DHJ82_wiheKeQACLo1n83QVbncNYlfXUY-4pycg.JPEG.aksen244/%C3%97Avengers_whatsapp%C3%97.jpg?type=w800';
               final String nickName = userInfo['nickname'] ?? 'Unknown';
               final String socialType = userInfo['socialType'] ?? 'Unknown';
 
@@ -64,6 +121,13 @@ class ProfilePage extends StatelessWidget {
                         height: avatarRadius,
                         width: avatarRadius,
                         borderRadius: BorderRadius.circular(avatarRadius / 2),
+                        onTap: () async {
+                          Uint8List? byteImage = await pickUpImage(context);
+
+                          if (byteImage != null) {
+                            await uploadImageToServer(context, byteImage);
+                          }
+                        },
                       ),
                     ),
                   ),
