@@ -1,46 +1,22 @@
-import 'package:beaten_beat/provider/auth_provider.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:flutter/material.dart';
-
 import 'package:beaten_beat/constants/color_palette.dart';
-
 import 'package:dio/dio.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:image_network/image_network.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
-class ChannelPage extends StatelessWidget {
+class ChannelPage extends StatefulWidget {
   const ChannelPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final isLoggedIn = Provider.of<AuthProvider>(context).isLoggedIn;
+  _ChannelPageState createState() => _ChannelPageState();
+}
 
+class _ChannelPageState extends State<ChannelPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.navy,
-      body: Column(
-        children: [
-          Center(
-              child: Text(
-            'Channel',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: ColorPalette.sky,
-            ),
-          )),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {},
-              child: Text("Call!"),
-            ),
-          ),
-          Text(
-            isLoggedIn ? 'Login' : 'Not Login',
-            style: TextStyle(fontSize: 24, color: Colors.white),
-          ),
-        ],
-      ),
+      backgroundColor: ColorPalette.blackRussian,
+      body: Text("channel."),
     );
   }
 }

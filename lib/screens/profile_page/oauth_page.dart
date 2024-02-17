@@ -1,8 +1,8 @@
 import 'dart:html' as html;
+import 'package:beaten_beat/apis/oauth_api.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:beaten_beat/constants/urls.dart';
 import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -60,7 +60,7 @@ class OAuthPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        html.window.open(Url.kakaoOAuthUrl, '_self');
+                        html.window.open(OAuthApi.kakaoOAuthUrl, '_self');
                       },
                       icon: Image.asset(
                         'assets/logos/kakao.png',
@@ -88,7 +88,7 @@ class OAuthPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        html.window.open(Url.naverOAuthUrl, '_self');
+                        html.window.open(OAuthApi.naverOAuthUrl, '_self');
                       },
                       icon: Image.asset(
                         'assets/logos/naver.png',
@@ -116,7 +116,7 @@ class OAuthPage extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        html.window.open(Url.googleOAuthUrl, '_self');
+                        html.window.open(OAuthApi.googleOAuthUrl, '_self');
                       },
                       icon: Image.asset(
                         'assets/logos/google.png',

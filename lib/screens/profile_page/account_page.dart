@@ -2,7 +2,6 @@ import 'dart:html' as html;
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:beaten_beat/constants/urls.dart';
 import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:auto_size_text/auto_size_text.dart';
