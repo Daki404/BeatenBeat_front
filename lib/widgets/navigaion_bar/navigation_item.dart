@@ -2,7 +2,7 @@ import 'package:beaten_beat/apis/ueser_api.dart';
 import 'package:beaten_beat/provider/auth_provider.dart';
 import 'package:beaten_beat/routes/routes.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:convert';
 import 'package:beaten_beat/widgets/navigaion_bar/interative_nav_item.dart';
 import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +31,10 @@ class NavigationItem extends StatelessWidget {
 
       // 응답 처리
       if (response.statusCode == 200) {
-        Provider.of<AuthProvider>(context, listen: false).login();
+        Map<String, dynamic> userData = response.data;
+        String userId = userData['id'];
+        print(userId);
+        Provider.of<AuthProvider>(context, listen: false).login(userId);
       }
     } catch (e) {
       // 예외 처리
