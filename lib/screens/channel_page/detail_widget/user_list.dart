@@ -66,7 +66,9 @@ class _UserListState extends State<UserList> {
 
       if (response.statusCode == 200) {
         print("Success to invite User!");
-        _groupUserData.userList.add(nickName);
+        setState(() {
+          _groupUserData.userList.add(nickName);
+        });
       } else {
         print("Failed to invite User..");
       }
@@ -90,9 +92,7 @@ class _UserListState extends State<UserList> {
               padding: const EdgeInsets.all(20),
               child: TextField(
                 onChanged: (value) {
-                  setState(() {
-                    _inputUserName = value;
-                  });
+                  _inputUserName = value;
                 },
                 decoration: const InputDecoration(
                   hintText: '추가할 User의 Nickname을 적어주세요!',
@@ -120,9 +120,9 @@ class _UserListState extends State<UserList> {
                 return Center(child: Text("Error: ${snapshot.error}"));
               }
 
-              GroupUsers groupUserData = GroupUsers(
+              _groupUserData = GroupUsers(
                   groupId: widget.groupId, userList: snapshot.data!.userList);
-              print(groupUserData);
+
               return Container(
                 width: widgetWidth,
                 margin: const EdgeInsets.all(10),
@@ -131,7 +131,7 @@ class _UserListState extends State<UserList> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
-                        for (var nickname in groupUserData.userList)
+                        for (var nickname in _groupUserData.userList)
                           Text(nickname,
                               style: TextStyles.introTextKr
                                   .copyWith(fontSize: 20)),

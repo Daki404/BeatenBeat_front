@@ -18,8 +18,9 @@ class AddProfile extends StatefulWidget {
 
   late String tmp_name;
   final double radius;
+  final void Function() refresh;
 
-  AddProfile({required this.radius});
+  AddProfile({required this.radius, required this.refresh});
 
   Future<Uint8List?> pickUpImage(BuildContext context) async {
     Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
@@ -50,6 +51,7 @@ class _AddProfileState extends State<AddProfile> {
       );
       if (response.statusCode == 200) {
         print("Image uploaded successfully");
+        widget.refresh();
       } else {
         print("Failed to upload image");
       }

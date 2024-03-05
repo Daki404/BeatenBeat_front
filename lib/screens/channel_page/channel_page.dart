@@ -33,6 +33,8 @@ class ChannelPage extends StatefulWidget {
 }
 
 class _ChannelPageState extends State<ChannelPage> {
+  late List<GroupData> leadingGroups;
+
   Future<List<GroupData>> fetchData() async {
     try {
       final Dio dio = Dio();
@@ -65,6 +67,12 @@ class _ChannelPageState extends State<ChannelPage> {
     return [];
   }
 
+  void refreshGroup() {
+    setState(() {
+      leadingGroups = [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
@@ -84,7 +92,7 @@ class _ChannelPageState extends State<ChannelPage> {
                 return Center(child: Text("Error: ${snapshot.error}"));
               }
 
-              List<GroupData> leadingGroups = snapshot.data!
+              leadingGroups = snapshot.data!
                   .where((group) => myId == group.leaderId)
                   .toList();
 
@@ -124,7 +132,10 @@ class _ChannelPageState extends State<ChannelPage> {
                         GroupData group = leadingGroups[index];
 
                         if (group.name.isEmpty) {
-                          return AddProfile(radius: avatarRadius);
+                          return AddProfile(
+                            radius: avatarRadius,
+                            refresh: refreshGroup,
+                          );
                         } else {
                           return GroupProfile(
                               id: group.id,

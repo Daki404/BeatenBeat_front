@@ -1,5 +1,6 @@
 import 'package:beaten_beat/constants/color_palette.dart';
 import 'package:beaten_beat/constants/text_style_palette.dart';
+import 'package:beaten_beat/screens/music_page/music_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 
@@ -37,7 +38,12 @@ class GroupInfo extends StatelessWidget {
             const SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
-                print("접속하자!!");
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return MusicDialog(groupId: groupId);
+                  },
+                );
               },
               child: Text(
                 "접속하기",
