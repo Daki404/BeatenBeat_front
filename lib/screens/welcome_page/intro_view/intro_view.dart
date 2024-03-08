@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:beaten_beat/constants/text_style_palette.dart';
+import 'package:beaten_beat/screens/welcome_page/explain_view/video_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:beaten_beat/constants/color_palette.dart';
@@ -15,21 +16,6 @@ class IntroView extends StatefulWidget {
 }
 
 class _IntroViewState extends State<IntroView> {
-  late YoutubePlayerController _controller;
-
-  @override
-  void initState() {
-    _controller = YoutubePlayerController(
-      params: YoutubePlayerParams(
-        mute: true,
-        showControls: true,
-        showFullscreenButton: false,
-      ),
-    );
-    _controller.loadVideoById(videoId: '2eOg5DoYuwU');
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -74,9 +60,11 @@ class _IntroViewState extends State<IntroView> {
           SizedBox(
             width: min(1100, screenWidth),
             child: Stack(children: [
-              YoutubePlayer(
-                controller: _controller,
-                aspectRatio: 16 / 9,
+              VideoApp(
+                width: screenWidth - 100,
+                height: 9 * (screenWidth - 100) / 16,
+                videoUrl:
+                    'https://beatenbeatbucket.s3.ap-northeast-2.amazonaws.com/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%88%E3%82%BD%E3%83%B3%E3%82%B0+(Fight+Song)+-+Eve+Music+Video.mp4',
               ),
               PointerInterceptor(
                 child: AspectRatio(aspectRatio: 16 / 9),
