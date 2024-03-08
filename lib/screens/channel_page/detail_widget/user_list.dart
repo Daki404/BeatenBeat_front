@@ -81,7 +81,6 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final widgetWidth = screenWidth * 0.2;
-    print(widgetWidth);
 
     return Column(
       children: <Widget>[

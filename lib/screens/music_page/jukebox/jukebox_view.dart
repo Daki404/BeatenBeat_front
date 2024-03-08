@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class JukeBoxView extends StatelessWidget {
   final String groupId;
@@ -7,8 +8,18 @@ class JukeBoxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(30),
-        child: Text("JukeBox View: $groupId"));
+    return Text("Hello");
+    /*
+    YoutubePlayerScaffold(
+      aspectRatio: 16 / 9,
+      builder: (context, player) {
+        return Column(
+          children: <Widget>[
+            player,
+          ],
+        );
+      },
+      controller: context.ytController,
+    );*/
   }
 }
