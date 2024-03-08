@@ -83,7 +83,11 @@ class LpExplainState extends State<LpExplain> {
                   ],
                 ),
               ),
-              VideoApp(videoUrl: widget.videoUrl),
+              VideoApp(
+                videoUrl: widget.videoUrl,
+                width: screenWidth * 0.4,
+                height: screenHeight * 0.5,
+              ),
             ],
           ),
         ],
