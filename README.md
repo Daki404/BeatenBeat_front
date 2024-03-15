@@ -18,9 +18,17 @@
 
 <br>
 
+## 홍보 영상
+
+<a href="https://www.youtube.com/watch?v=A508TVTFlKA"><img src="https://img.youtube.com/vi/A508TVTFlKA/0.jpg"></a>
+
+<br>
+
+## Preview
+<img src="https://github.com/Daki404/BeatenBeat_front/assets/67456502/d3ecf6f5-10e5-4ac7-a539-d72641139a01">
+
 ## Architecture
 <img src="https://github.com/Daki404/BeatenBeat_front/assets/67456502/aeee2b38-5209-4e5d-a9fe-589441316a89">
-
 
 <br>
 
